@@ -1,0 +1,54 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="LENOVO (generated)" id="1619046742793-1">
+        <createTable tableName="device">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="device_id" type="VARCHAR(255)"/>
+            <column name="device_type" type="VARCHAR(255)"/>
+            <column name="meta_tag" type="VARCHAR(255)"/>
+            <column name="os" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="LENOVO (generated)" id="1619046742793-2">
+        <createTable tableName="esim">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="activation_code" type="VARCHAR(255)"/>
+            <column name="eid" type="VARCHAR(255)"/>
+            <column name="iccid" type="VARCHAR(255)"/>
+            <column name="imsi" type="VARCHAR(255)"/>
+            <column name="device" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="LENOVO (generated)" id="1619046742793-3">
+        <createTable tableName="user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="is_active" type="BIT(1)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="LENOVO (generated)" id="1619046742793-4">
+        <createIndex indexName="FKk92m2qj36vn62ctp5pgbt4982" tableName="device">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="LENOVO (generated)" id="1619046742793-5">
+        <createIndex indexName="FKo7gcyx614oflda8kdc1fqe80p" tableName="esim">
+            <column name="device"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="LENOVO (generated)" id="1619046742793-6">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="device" constraintName="FKk92m2qj36vn62ctp5pgbt4982" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="LENOVO (generated)" id="1619046742793-7">
+        <addForeignKeyConstraint baseColumnNames="device" baseTableName="esim" constraintName="FKo7gcyx614oflda8kdc1fqe80p" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="device" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

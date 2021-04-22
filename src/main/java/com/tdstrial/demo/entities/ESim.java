@@ -8,14 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * @author Raja
  *
  * TDSoftware trial
+ * 
+ * ESIM Entity
  */
 @Entity
 @Table(name = "esim")
@@ -33,17 +33,20 @@ public class ESim {
 	private String activationCode;
 	@Column(name = "eID")
 	private String eId;
+	@Column(name = "device")
+	private Long device;
 	
-	@ManyToOne
-	@JoinColumn(name = "device", referencedColumnName = "id")
-	private Device device;
+	/*
+	 * @ManyToOne(fetch = FetchType.LAZY)
+	 * 
+	 * @JoinColumn(name = "device", referencedColumnName = "id") private Device
+	 * device;
+	 * 
+	 * public Device getDevice() { return device; } public void setDevice(Device
+	 * device) { this.device = device; }
+	 */
 	
-	public Device getDevice() {
-		return device;
-	}
-	public void setDevice(Device device) {
-		this.device = device;
-	}
+	
 	public long getId() {
 		return id;
 	}
@@ -73,6 +76,18 @@ public class ESim {
 	}
 	public void seteId(String eId) {
 		this.eId = eId;
+	}
+	/**
+	 * @return the device
+	 */
+	public Long getDevice() {
+		return device;
+	}
+	/**
+	 * @param device the device to set
+	 */
+	public void setDevice(Long device) {
+		this.device = device;
 	}	
 
 }

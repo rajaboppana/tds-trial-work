@@ -1,0 +1,136 @@
+databaseChangeLog:
+- changeSet:
+    id: 1619047602439-1
+    author: LENOVO (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: id
+            type: BIGINT
+        - column:
+            name: device_id
+            type: VARCHAR(255)
+        - column:
+            name: device_type
+            type: VARCHAR(255)
+        - column:
+            name: meta_tag
+            type: VARCHAR(255)
+        - column:
+            name: os
+            type: VARCHAR(255)
+        - column:
+            name: user_id
+            type: BIGINT
+        tableName: device
+- changeSet:
+    id: 1619047602439-2
+    author: LENOVO (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: id
+            type: BIGINT
+        - column:
+            name: activation_code
+            type: VARCHAR(255)
+        - column:
+            name: eid
+            type: VARCHAR(255)
+        - column:
+            name: iccid
+            type: VARCHAR(255)
+        - column:
+            name: imsi
+            type: VARCHAR(255)
+        - column:
+            name: device
+            type: BIGINT
+        tableName: esim
+- changeSet:
+    id: 1619047602439-3
+    author: LENOVO (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: id
+            type: BIGINT
+        - column:
+            name: email
+            type: VARCHAR(255)
+        - column:
+            name: is_active
+            type: BIT(1)
+        - column:
+            name: name
+            type: VARCHAR(255)
+        - column:
+            name: password
+            type: VARCHAR(255)
+        tableName: user
+- changeSet:
+    id: 1619047602439-4
+    author: LENOVO (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: user_id
+        indexName: FKk92m2qj36vn62ctp5pgbt4982
+        tableName: device
+- changeSet:
+    id: 1619047602439-5
+    author: LENOVO (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: device
+        indexName: FKo7gcyx614oflda8kdc1fqe80p
+        tableName: esim
+- changeSet:
+    id: 1619047602439-6
+    author: LENOVO (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: device
+        constraintName: FKk92m2qj36vn62ctp5pgbt4982
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: user
+        validate: true
+- changeSet:
+    id: 1619047602439-7
+    author: LENOVO (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: device
+        baseTableName: esim
+        constraintName: FKo7gcyx614oflda8kdc1fqe80p
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: device
+        validate: true
+

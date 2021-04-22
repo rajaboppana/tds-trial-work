@@ -19,6 +19,8 @@ import javax.persistence.Table;
  * @author Raja
  *
  * TDSoftware trial
+ * 
+ * User Entity
  */
 
 @Entity
@@ -38,7 +40,11 @@ public class User {
 	@Column
 	private boolean isActive;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+	/*
+	 * Fetch Type EAGER to retrieve devices belonging to the User
+	 */	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL,
+	        orphanRemoval = true)
 	private Set<Device> device;
 	
 	public long getId() {

@@ -5,15 +5,12 @@ package com.tdstrial.demo.entities;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,6 +18,8 @@ import javax.persistence.Table;
  * @author Raja
  *
  * TDSoftware trial
+ * 
+ * Device Entity
  */
 @Entity
 @Table(name="device")
@@ -38,14 +37,28 @@ public class Device {
 	private String os;
 	@Column
 	private String metaTag;
+	@Column(name = "user_id")
+	private Long user;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "device")
+	/*
+	 * Fetch Type EAGER to retrieve esims attached to the device.
+	 */	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "device")
 	private Set<ESim> esim;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private User user;
+	public Set<ESim> getEsim() {
+		return esim;
+	}
+	public void setEsim(Set<ESim> esim) {
+		this.esim = esim;
+	}
 	
+	public Long getUser() {
+		return user;
+	}
+	public void setUser(Long user) {
+		this.user = user;
+	}
 	public long getId() {
 		return id;
 	}
